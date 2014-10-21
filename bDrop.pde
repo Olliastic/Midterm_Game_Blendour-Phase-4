@@ -1,9 +1,9 @@
 class bDrop {
 
   color bDropShade;
-  int r = 255;
-  int g = 255;
-  int b = 255;
+  int r = 0;
+  int g = 0;
+  int b = 0;
 
 
 
@@ -20,14 +20,32 @@ class bDrop {
     strokeWeight(5);
 
     rect(10, 10, 380, 482);
+    if (mySliderR.y == 550) {
+      r = 0;
+    }
     if (mySliderR.y == 540) {
       r = 128;
+    }
+    if (mySliderR.y == 530) {
+      r = 255;
+    }
+    if (mySliderG.y == 550) {
+      g = 0;
     }
     if (mySliderG.y == 540) {
       g = 128;
     }
+    if (mySliderG.y == 530) {
+      g = 255;
+    }
+    if (mySliderB.y == 550) {
+      b = 0;
+    }
     if (mySliderB.y == 540) {
       b = 128;
+    }
+    if (mySliderB.y == 530) {
+      b = 255;
     }
   }
 }

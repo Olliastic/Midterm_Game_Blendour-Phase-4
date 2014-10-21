@@ -23,10 +23,11 @@ boolean selectG = false;
 
 void setup() {
   size (400, 600);
+
   myBdrop = new bDrop();
   mySliderR = new slider(50, placement);
-  mySliderB = new slider(200, placement);
-  mySliderG = new slider(350, placement);
+  mySliderG = new slider(200, placement);
+  mySliderB = new slider(350, placement);
   myOrbs = new ArrayList<Orb>();
   shaders = new color[27];
   shaders[0] = color(0);
@@ -74,25 +75,62 @@ void keyPressed() {
 
   if (key == CODED) {
     if (keyCode == UP && selectR == true) {
-      mySliderR.y = 540;
+      mySliderR.y  = mySliderR.y - 10;
       println("MovingDown");
+    }
+    if (keyCode == DOWN && selectR == true) {
+      mySliderR.y = mySliderR.y + 10;
+    }
+    if (mySliderR.y <= 530) {
+      mySliderR.y = 530;
+    }
+    if (mySliderR.y >= 550) {
+      mySliderR.y = 550;
+    }
+
+    if (keyCode == UP && selectG == true) {
+      mySliderG.y  = mySliderG.y - 10;
+      println("MovingDown");
+    }
+    if (keyCode == DOWN && selectG == true) {
+      mySliderG.y = mySliderG.y + 10;
+    }
+    if (mySliderG.y <= 530) {
+      mySliderG.y = 530;
+    }
+    if (mySliderG.y >= 550) {
+      mySliderG.y = 550;
+    }
+
+    if (keyCode == UP && selectB == true) {
+      mySliderB.y  = mySliderB.y - 10;
+      println("MovingDown");
+    }
+    if (keyCode == DOWN && selectB == true) {
+      mySliderB.y = mySliderB.y + 10;
+    }
+    if (mySliderB.y <= 530) {
+      mySliderB.y = 530;
+    }
+    if (mySliderB.y >= 550) {
+      mySliderB.y = 550;
     }
   }
 
   switch (key) {
-  case 'r':
+  case '1':
     selectR = true;
     selectG = false;
     selectB = false;
     println("Red is on");
     break;
-  case 'g':
+  case '2':
     selectR = false;
     selectG = true;
     selectB = false;
     println("Green is on");
     break;
-  case 'b':
+  case '3':
     selectR = false;
     selectG = false;
     selectB = true;
@@ -109,7 +147,13 @@ void draw() {
 
   background(255);
   myBdrop.display();
-
+  noStroke();
+  fill(0);
+  rect(0, 550, displayWidth, 10); 
+  fill(128);
+  rect(0, 540, displayWidth, 10); 
+  fill(255);
+  rect(0, 530, displayWidth, 10); 
 
   for (int i = 0; i < myOrbs.size (); i++) {
     Orb orb = myOrbs.get(i);
