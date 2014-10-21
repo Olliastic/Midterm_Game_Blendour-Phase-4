@@ -1,10 +1,9 @@
 class bDrop {
 
   color bDropShade;
-  int r = 0;
-  int g = 0;
-  int b = 0;
-
+  int r;
+  int g;
+  int b;
 
 
   bDrop() {
@@ -14,12 +13,7 @@ class bDrop {
 
 
   void display() {
-    rectMode(CORNER);
-    fill(r, g, b);
-    stroke(0);
-    strokeWeight(5);
 
-    rect(10, 10, 380, 482);
     if (mySliderR.y == 550) {
       r = 0;
     }
@@ -47,6 +41,11 @@ class bDrop {
     if (mySliderB.y == 530) {
       b = 255;
     }
+    rectMode(CORNER);
+    fill(r,g,b);
+    stroke(0);
+    strokeWeight(5);
+    rect(10, 10, 380, 482);
   }
 }
 

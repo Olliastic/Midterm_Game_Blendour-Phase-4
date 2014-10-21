@@ -189,7 +189,7 @@ void draw() {
   for (int i = myOrbs.size ()-1; i >=0; i--) {
     Orb orb = myOrbs.get(i); 
 
-    if (color(shaders) == color(bDropShade)) {
+    if (orb.ocolor == color(myBdrop.r, myBdrop.g, myBdrop.b)) {
       myOrbs.remove(i);
     }
   }
