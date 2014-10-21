@@ -174,25 +174,39 @@ void draw() {
       }
     }
   }
+
   if (myOrbs.size() > 0) {
-    Orb orb = myOrbs.get(myOrbs.size()-1);
+    Orb orb = myOrbs.get(myOrbs.size()-1); 
     if (orb.y >= 480) {
       newOrb();
     }
   } else {
     newOrb();
   }
-  fill(red);
-  mySliderR.display();
-  fill(green);
-  mySliderG.display();
-  fill(blue);
+  
+  // Erasing orbs
+
+  for (int i = myOrbs.size ()-1; i >=0; i--) {
+    Orb orb = myOrbs.get(i); 
+
+    if (color(shaders) == color(bDropShade)) {
+      myOrbs.remove(i);
+    }
+  }
+
+  // 
+  
+  fill(red); 
+  mySliderR.display(); 
+  fill(green); 
+  mySliderG.display(); 
+  fill(blue); 
   mySliderB.display();
 }
 
 
 void newOrb() {
-  Orb newOrb = new Orb(random(50, 300), 0, shaders[int(random(27))]);
+  Orb newOrb = new Orb(random(50, 300), 0, shaders[int(random(27))]); 
   myOrbs.add(newOrb);
 }
 
