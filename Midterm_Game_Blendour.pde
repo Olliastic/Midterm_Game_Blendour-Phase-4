@@ -1,4 +1,5 @@
 
+
 slider mySliderR;
 slider mySliderG;
 slider mySliderB;
@@ -18,17 +19,22 @@ color blue = color(0, 0, 255);
 boolean selection = true;
 boolean selectR = false;
 boolean selectB = false;
-boolean selectG = false;
+boolean selectG = false; 
+PImage logo;
 
 
 void setup() {
-  size (400, 600);
+  logo = loadImage("BlendourLogo.png");
+  size (400, 620);
 
   myBdrop = new bDrop();
   mySliderR = new slider(50, placement);
   mySliderG = new slider(200, placement);
   mySliderB = new slider(350, placement);
   myOrbs = new ArrayList<Orb>();
+  
+  // Array List for Shaders ------------------------------------
+  
   shaders = new color[27];
   shaders[0] = color(0);
   shaders[1] = color(255, 255, 255);
@@ -143,9 +149,10 @@ void keyPressed() {
 
 
 void draw() {
-
+  
 
   background(255);
+  image(logo, 138, 575);
   myBdrop.display();
   noStroke();
   fill(0);
@@ -158,13 +165,6 @@ void draw() {
   for (int i = 0; i < myOrbs.size (); i++) {
     Orb orb = myOrbs.get(i);
     orb.display();
-    //now that we've displayed it, let's go through and compare it to all of the other orbs
-    //to see if they're touching
-    //we start with the orb we're on and continue until the end.
-    //if there's 5 orbs, 0 gets tested against 1,2,3,4
-    //1 gets tested against 2,3,4
-    //2 gets tested against 3,4
-    //3 gets tested against 4.
 
     for (int j = i + 1; j < myOrbs.size (); j++) {
       Orb otherOrb = myOrbs.get(j);
@@ -174,28 +174,28 @@ void draw() {
       }
     }
   }
-
   if (myOrbs.size() > 0) {
     Orb orb = myOrbs.get(myOrbs.size()-1); 
-    if (orb.y >= 480) {
+    if (orb.y >= 470) {
       newOrb();
     }
   } else {
     newOrb();
   }
-  
-  // Erasing orbs
-
+  // Erasing orbs ---------------------------
   for (int i = myOrbs.size ()-1; i >=0; i--) {
     Orb orb = myOrbs.get(i); 
 
     if (orb.ocolor == color(myBdrop.r, myBdrop.g, myBdrop.b)) {
       myOrbs.remove(i);
+      orb.gone = true;
     }
   }
+  //for (int l = 0; l < myOrbs.size (); i++){
+  //  }
 
-  // 
-  
+  //------------------------
+
   fill(red); 
   mySliderR.display(); 
   fill(green); 
